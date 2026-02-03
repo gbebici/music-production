@@ -55,12 +55,7 @@ const Contact = () => {
         timestamp: new Date().toISOString(),
       });
     }
-
-    // Build mailto links
-    const subject = encodeURIComponent(`New Project Inquiry from ${data.name}`);
-    const body = encodeURIComponent(
-      `Name: ${data.name}\nEmail: ${data.email}\n\nProject Details:\n${data.message}`
-    );
+    // Send data to  Resend API
     try {
       fetch(`/api/send`, {
         method: "POST",
@@ -73,15 +68,21 @@ const Contact = () => {
           message: data.message,
         })
       }).then((response)=>{
+        if (response.status === 429) {
+          router.push('/rate-limit');
+          toast.error( "You've reached the limit of messages. Please try WhatsApp.");
+          console.log("Failed to send email. Response:", response);
+          form.reset();
+          return;
+        } 
         if (response.ok) {
           router.push('/thank-you');
           form.reset();
         }else {
-          toast.error( "Failed to send email. Please try WhatsApp.");
-          console.log("Failed to send email. Response:", response);
+          toast.error( "Failed to send message. Please try WhatsApp.");
         }
-    })
-    } catch (error) {
+      }
+      );} catch (error) {
         toast.error( "An error occurred. Please try WhatsApp.");
         console.log("An error occurred:", error);
     }
@@ -130,8 +131,8 @@ const Contact = () => {
               <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#25D366]/20 flex items-center justify-center">
                 <WhatsAppIcon />
               </div>
-              <h3 className="font-semibold text-xl mb-3">Quick Chat</h3>
-              <button onClick={handleWhatsAppClick} className="btn-whatsapp w-full text-sm">
+              <h3 className="font-semibold text-xl mb-3 cursor-pointer">Quick Chat</h3>
+              <button onClick={handleWhatsAppClick} className="btn-whatsapp w-full text-sm cursor-pointer">
                 <WhatsAppIcon />
                 Let's talk about your demo
               </button>
@@ -200,7 +201,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full btn-premium flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full btn-premium flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
               >
                 {isSubmitting ? (
                   "Sending..."

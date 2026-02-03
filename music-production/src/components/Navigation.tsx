@@ -31,7 +31,7 @@ const Navigation = () => {
       <div className="container mx-auto px-6 flex items-center justify-between">
         <button
           onClick={() => scrollToSection("hero")}
-          className="font-bold text-lg tracking-tight text-foreground hover:text-primary transition-colors"
+          className="font-bold text-lg tracking-tight text-foreground cursor-pointer hover:text-primary transition-colors"
         >
           GABRIEL BEBICI
         </button>
@@ -41,7 +41,7 @@ const Navigation = () => {
             <button
               key={item}
               onClick={() => scrollToSection(item.toLowerCase())}
-              className="font-mono text-xs tracking-wider text-muted-foreground hover:text-foreground transition-colors uppercase"
+              className="font-mono text-xs tracking-wider text-muted-foreground cursor-pointer hover:text-foreground transition-colors uppercase"
             >
               {item}
             </button>
@@ -50,7 +50,7 @@ const Navigation = () => {
 
         <button
           onClick={() => scrollToSection("contact")}
-          className="hidden md:block font-mono text-xs tracking-wider px-5 py-2.5 bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 rounded uppercase"
+          className="hidden md:block font-mono text-xs tracking-wider cursor-pointer px-5 py-2.5 bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 rounded uppercase"
         >
           Start Project
         </button>
