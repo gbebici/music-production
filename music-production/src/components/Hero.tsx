@@ -70,7 +70,7 @@ const Hero = () => {
       }} className="flex justify-center">
           <button onClick={handleWhatsAppClick} className="btn-whatsapp text-sm">
             <WhatsAppIcon />
-            Let&aposs talk about your demo
+            Let's talk about your demo
           </button>
         </motion.div>
       </div>

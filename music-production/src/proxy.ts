@@ -15,7 +15,7 @@ const rateLimiter = new Ratelimit({
     prefix: '@upstash/ratelimit',
 });
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
     if (req.nextUrl.pathname.startsWith('/api/send')){
         const forwardedFor = req.headers.get('x-forwarded-for');
         const ip = forwardedFor ? forwardedFor.split(',')[0].trim() : '127.0.0.1';
