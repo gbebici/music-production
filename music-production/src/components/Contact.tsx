@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 export {};
 declare global {
   interface Window {
-    dataLayer: Array<Record<string, any>>[];
+    dataLayer: Record<string, unknown>[];
   }
 }
 
@@ -47,9 +47,9 @@ const Contact = () => {
     console.log("Data submitted:", data);
     // Tracking
     if (typeof window !== "undefined" && window.dataLayer) {
-      (window as any).dataLayer.push({
+      window.dataLayer.push({
         event: "form_submission",
-        formType: "contact_international",
+        formType: "contact_form",
         user_language: navigator.language,
         user_timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         timestamp: new Date().toISOString(),
@@ -91,9 +91,9 @@ const Contact = () => {
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent("Hi Gabriel, I'd like to talk about my music project!");
     if (typeof window !== "undefined" && window.dataLayer) {
-      (window as any).dataLayer.push({
+      window.dataLayer.push({
         event: "whatsapp_click",
-        formType: "contact",
+        formType: "contact_link",
         timestamp: new Date().toISOString(),
       });
     }
@@ -104,7 +104,7 @@ const Contact = () => {
     <section id="contact" className="py-16 md:py-32 px-4 sm:px-6 relative">
       <div className="absolute top-10 right-0 overflow-hidden pointer-events-none select-none">
         <span className="font-display text-[25vw] font-extrabold text-foreground/[0.015] leading-none">
-          LET'S
+          LET&aposS
         </span>
       </div>
 
@@ -116,7 +116,7 @@ const Contact = () => {
           className="text-center mb-10 md:mb-16"
         >
           <p className="font-mono text-[10px] sm:text-xs tracking-[0.2em] uppercase text-primary mb-3">
-            Let's Connect
+            Let&aposs Connect
           </p>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4">
             START YOUR<br />
@@ -134,7 +134,7 @@ const Contact = () => {
               <h3 className="font-semibold text-xl mb-3 cursor-pointer">Quick Chat</h3>
               <button onClick={handleWhatsAppClick} className="btn-whatsapp w-full text-sm cursor-pointer">
                 <WhatsAppIcon />
-                Let's talk about your demo
+                Let&aposs talk about your demo
               </button>
             </div>
           </div>
