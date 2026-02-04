@@ -17,7 +17,7 @@ export default function RateLimitPage() {
         </div>
         <h1 className="text-3xl font-bold font-display">Rate Limit Reached!</h1>
         <p className="text-muted-foreground">
-          You&aposve reached the rate limit. Would you like to continue on WhatsApp?
+          You've reached the rate limit. Would you like to continue on WhatsApp?
         </p>
         <Link 
           href="https://wa.me/5527995096289?text=Hi%20Gabriel,%20I'd%20like%20to%20talk%20about%20my%20music%20project!" 
