@@ -96,7 +96,12 @@ const PortfolioCard = ({
     </motion.div>;
 };
 const PortfolioGrid = () => {
-  return <section id="work" className="py-16 md:py-32 px-4 sm:px-6 relative">
+  const [showAll, setShowAll] = useState(false);
+  const initialDisplayCount = 2;
+  const visibleTracks = showAll ? tracks : tracks.slice(0, initialDisplayCount);
+
+  return (
+    <section id="work" className="py-16 md:py-32 px-4 sm:px-6 relative">
       {/* Background decorative text */}
       <div className="absolute top-20 left-0 overflow-hidden pointer-events-none select-none">
         <span className="font-display text-[30vw] font-extrabold text-foreground/[0.015] leading-none">
@@ -105,17 +110,13 @@ const PortfolioGrid = () => {
       </div>
 
       <div className="container mx-auto max-w-4xl relative z-10">
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} whileInView={{
-        opacity: 1,
-        y: 0
-      }} viewport={{
-        once: true
-      }} transition={{
-        duration: 0.6
-      }} className="mb-10 md:mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 0.6 }} 
+          className="mb-10 md:mb-16"
+        >
           <p className="font-mono text-[10px] sm:text-xs tracking-[0.2em] uppercase text-primary mb-3">
             Portfolio
           </p>
@@ -125,11 +126,33 @@ const PortfolioGrid = () => {
           </h2>
         </motion.div>
 
-        {/* Single column layout - stacked vertically */}
+        {/* Video Listing */}
         <div className="space-y-8 md:space-y-12">
-          {tracks.map((track, index) => <PortfolioCard key={track.title} track={track} index={index} />)}
+          {visibleTracks.map((track, index) => (
+            <PortfolioCard key={track.title} track={track} index={index} />
+          ))}
         </div>
+
+        {/* Expand button for more tracks */}
+        {tracks.length > initialDisplayCount && (
+  <div className="mt-16 flex justify-center">
+    <button
+      onClick={() => setShowAll(!showAll)}
+      className="px-8 py-4 bg-transparent border border-white/20 hover:border-primary hover:text-primary transition-all duration-300 rounded-full font-mono text-[10px] tracking-[0.2em] uppercase flex items-center gap-3 group"
+    >
+      <span>{showAll ? "Show Less" : "View Full Portfolio"}</span>
+      <motion.span
+        animate={{ rotate: showAll ? 180 : 0 }}
+        className="text-lg"
+      >
+        ↓
+      </motion.span>
+    </button>
+  </div>
+)}
       </div>
-    </section>;
+    </section>
+  );
 };
 export default PortfolioGrid;
+

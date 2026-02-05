@@ -11,7 +11,7 @@ const Hero = () => {
   return <section id="hero" className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 pt-20 pb-12 md:pt-24 md:pb-16 relative overflow-hidden">
       {/* Background decorative text */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
-        <span className="font-display text-[20vw] md:text-[15vw] font-extrabold text-foreground/[0.02] whitespace-nowrap">
+        <span className="font-display text-[20vw]  md:text-[15vw] font-extrabold text-foreground/[0.02] whitespace-nowrap">
           PRODUCER
         </span>
       </div>
@@ -39,9 +39,9 @@ const Hero = () => {
       }} transition={{
         duration: 0.8,
         delay: 0.4
-      }} className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9x1 font-extrabold leading-[0.9] mb-6 md:mb-8">
+      }} className="font-display text-[9vw] text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9x1 font-extrabold leading-[0.9] mb-6 md:mb-8 flex flex-col items-center text-center w-full">
           <span className="block">MUSIC</span>
-          <span className="block text-primary">PRODUCER</span>
+          <span className="block text-primary text-primary whitespace-nowrap w-max">PRODUCER</span>
         </motion.h1>
 
         <motion.p initial={{

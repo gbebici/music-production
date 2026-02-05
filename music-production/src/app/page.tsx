@@ -8,6 +8,7 @@ import PortfolioGrid from "@/components/PortfolioGrid";
 import Process from "@/components/Process";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import References from "@/components/References";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <FeaturedProduction />
         <About />
         <PortfolioGrid />
+        <References/>
         <Process />
         <Contact />
       </main>
