@@ -93,7 +93,6 @@ const Contact = () => {
     if (typeof window !== "undefined" && window.dataLayer) {
       window.dataLayer.push({
         event: "whatsapp_click",
-        formType: "contact_link",
         timestamp: new Date().toISOString(),
       });
     }
@@ -132,7 +131,7 @@ const Contact = () => {
                 <WhatsAppIcon />
               </div>
               <h3 className="font-semibold text-xl mb-3 cursor-pointer">Quick Chat</h3>
-              <button onClick={handleWhatsAppClick} className="btn-whatsapp w-full text-sm cursor-pointer">
+              <button onClick={handleWhatsAppClick} id="whatsapp_click" className="btn-whatsapp w-full text-sm cursor-pointer">
                 <WhatsAppIcon />
                 Let's talk about your demo
               </button>
@@ -200,6 +199,7 @@ const Contact = () => {
 
               <button
                 type="submit"
+                id="form_submission"
                 disabled={isSubmitting}
                 className="w-full btn-premium flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
               >
